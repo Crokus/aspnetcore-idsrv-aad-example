@@ -244,6 +244,10 @@ namespace IdentityServer4.Quickstart.UI
                 user = _users.AutoProvisionUser(provider, userId, claims);
             }
 
+            // remove 'name' claim issued by idsrv
+            user.Claims.Remove(user.Claims
+                .SingleOrDefault(c => c.Type.Equals("name") && c.Issuer.Equals("LOCAL AUTHORITY")));
+
             var additionalClaims = new List<Claim>();
 
             // if the external system sent a session id claim, copy it over
