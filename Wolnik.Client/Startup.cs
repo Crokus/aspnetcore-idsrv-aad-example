@@ -39,6 +39,7 @@ namespace Wolnik.Client
                     options.ClientId = "sensorclient";
                     options.Scope.Add("openid");
                     options.Scope.Add("profile");
+                    options.Scope.Add("sensorsapi");
                     options.ResponseType = "code id_token";
                     options.SaveTokens = true;
                     options.ClientSecret = "secret";

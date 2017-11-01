@@ -46,6 +46,11 @@ namespace Wolnik.IdSrv
             };
         }
 
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource> { new ApiResource("sensorsapi", "Sensors API") };
+        }
+
         public static IEnumerable<Client> GetClients()
         {
             return new List<Client>
@@ -62,7 +67,8 @@ namespace Wolnik.IdSrv
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "sensorsapi"
                     },
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     PostLogoutRedirectUris =
