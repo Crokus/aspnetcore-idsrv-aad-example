@@ -23,7 +23,7 @@ namespace Wolnik.Client.Services
 
         public async Task<HttpClient> GetClientAsync()
         {
-            string accessToken = null;//await GetValidAccessToken();
+            string accessToken = await GetValidAccessToken();
             if (!string.IsNullOrEmpty(accessToken))
             {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
