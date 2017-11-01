@@ -25,6 +25,25 @@ namespace Wolnik.Client
             services.AddMvc();
 
             services.AddScoped<ISensorDataHttpClient, SensorDataHttpClient>();
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = "Cookies";
+                    options.DefaultChallengeScheme = "oidc";
+                })
+                .AddCookie("Cookies", options => options.AccessDeniedPath = "/Authorization/AccessDenied")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.Authority = "https://localhost:44392/";
+                    options.RequireHttpsMetadata = true;
+                    options.ClientId = "sensorclient";
+                    options.Scope.Add("openid");
+                    options.Scope.Add("profile");
+                    options.ResponseType = "code id_token";
+                    options.SaveTokens = true;
+                    options.ClientSecret = "secret";
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +58,8 @@ namespace Wolnik.Client
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseAuthentication();
 
             app.UseStaticFiles();
 

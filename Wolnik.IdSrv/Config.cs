@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using IdentityServer4.Extensions;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
@@ -23,7 +20,7 @@ namespace Wolnik.IdSrv
                     Claims = new List<Claim>
                     {
                         new Claim("given_name", "Krzysztof"),
-                        new Claim("family_name", "Ibisz"),
+                        new Claim("family_name", "Ibisz")
                     }
                 },
                 new TestUser
@@ -34,7 +31,7 @@ namespace Wolnik.IdSrv
                     Claims = new List<Claim>
                     {
                         new Claim("given_name", "Jan"),
-                        new Claim("family_name", "Kowalski"),
+                        new Claim("family_name", "Kowalski")
                     }
                 }
             };
@@ -51,7 +48,29 @@ namespace Wolnik.IdSrv
 
         public static IEnumerable<Client> GetClients()
         {
-            return new List<Client>();
+            return new List<Client>
+            {
+                new Client
+                {
+                    ClientName = "Sensor Dashboard",
+                    ClientId = "sensorclient",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    RedirectUris =
+                    {
+                        "https://localhost:44370/signin-oidc"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile
+                    },
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    PostLogoutRedirectUris =
+                    {
+                        "https://localhost:44370/signout-callback-oidc"
+                    }
+                }
+            };
         }
     }
 }

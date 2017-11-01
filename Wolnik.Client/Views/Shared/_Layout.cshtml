@@ -33,6 +33,10 @@
                     <li><a asp-area="" asp-controller="Sensor" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Sensor" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Sensor" asp-action="Contact">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Authorization" asp-action="Logout">Logout</a></li>
+                    }
                 </ul>
             </div>
         </div>

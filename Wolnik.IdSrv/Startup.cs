@@ -30,6 +30,7 @@ namespace Wolnik.IdSrv
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole();
+            loggerFactory.AddFile("Logs/{Date}-idsrv-log.txt");
             loggerFactory.AddDebug();
 
             if (env.IsDevelopment())

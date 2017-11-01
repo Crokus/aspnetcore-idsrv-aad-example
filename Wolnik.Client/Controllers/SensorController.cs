@@ -6,7 +6,10 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Newtonsoft.Json;
 using Wolnik.Client.Models;
 using Wolnik.Client.Services;
@@ -14,6 +17,7 @@ using Wolnik.Model;
 
 namespace Wolnik.Client.Controllers
 {
+    [Authorize]
     public class SensorController : Controller
     {
         private ISensorDataHttpClient _client;
@@ -22,8 +26,10 @@ namespace Wolnik.Client.Controllers
         {
             _client = client;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var idToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
+
             return View();
         }
 
