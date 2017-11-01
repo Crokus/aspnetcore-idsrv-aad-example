@@ -49,8 +49,8 @@ namespace Wolnik.Client.Controllers
 
             return await HandleApiResponse(response, async () =>
             {
-                var imagesAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var sensorData = JsonConvert.DeserializeObject<IEnumerable<SensorData>>(imagesAsString)
+                var jsonContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                var sensorData = JsonConvert.DeserializeObject<IEnumerable<SensorData>>(jsonContent)
                     .ToList();
 
                 return View(sensorData);
