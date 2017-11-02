@@ -19,6 +19,7 @@ namespace Wolnik.IdSrv
                     Password = "123",
                     Claims = new List<Claim>
                     {
+                        new Claim("name", "Krzysztof Ibisz"),
                         new Claim("given_name", "Krzysztof"),
                         new Claim("family_name", "Ibisz")
                     }
@@ -30,6 +31,7 @@ namespace Wolnik.IdSrv
                     Password = "123",
                     Claims = new List<Claim>
                     {
+                        new Claim("name", "Jan Kowalski"),
                         new Claim("given_name", "Jan"),
                         new Claim("family_name", "Kowalski")
                     }
@@ -74,6 +76,10 @@ namespace Wolnik.IdSrv
                     PostLogoutRedirectUris =
                     {
                         "https://localhost:44370/signout-callback-oidc"
+                    },
+                    IdentityProviderRestrictions =
+                    {
+                        "AAD"
                     }
                 }
             };
