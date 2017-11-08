@@ -29,8 +29,9 @@ namespace Wolnik.Client.Controllers
         public async Task<IActionResult> Index()
         {
             var idToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.IdToken);
+            var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
 
-            return View();
+            return View(new TokensViewModel { IdToken = idToken, AccessToken = accessToken });
         }
 
         public IActionResult About()
