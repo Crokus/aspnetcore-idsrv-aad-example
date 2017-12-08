@@ -44,13 +44,14 @@ namespace Wolnik.IdSrv
             return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
+                new IdentityResources.Profile(),
+                new IdentityResource("division", "Your division name", new[] { "division" }) { Required = true }
             };
         }
 
         public static IEnumerable<ApiResource> GetApiResources()
         {
-            return new List<ApiResource> { new ApiResource("sensorsapi", "Sensors API") };
+            return new List<ApiResource> { new ApiResource("sensorsapi", "Sensors API"), new ApiResource("adminapi", "Admin API") };
         }
 
         public static IEnumerable<Client> GetClients()
@@ -76,6 +77,32 @@ namespace Wolnik.IdSrv
                     PostLogoutRedirectUris =
                     {
                         "https://localhost:44370/signout-callback-oidc"
+                    },
+                    IdentityProviderRestrictions =
+                    {
+                        "AAD"
+                    }
+                },
+                new Client
+                {
+                    ClientName = "Sensor Administration",
+                    ClientId = "sensoradminclient",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+                    RedirectUris =
+                    {
+                        "https://localhost:44310/signin-oidc"
+                    },
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "division",
+                        "adminapi",
+                    },
+                    ClientSecrets = { new Secret("secret2".Sha256()) },
+                    PostLogoutRedirectUris =
+                    {
+                        "https://localhost:44310/signout-callback-oidc"
                     },
                     IdentityProviderRestrictions =
                     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.Client", "Wolnik.Client\Wolnik.Client.csproj", "{BFB0C708-4CD0-44A6-9910-28AFB2203579}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.Model", "Wolnik.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.API", "Wolnik.API\Wolnik.API.csproj", "{09D269D0-EEC4-4385-946C-19CE13A3E17A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wolnik.IdSrv", "Wolnik.IdSrv\Wolnik.IdSrv.csproj", "{44D9347B-D861-4D9D-94C0-BA9657E87F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.IdSrv", "Wolnik.IdSrv\Wolnik.IdSrv.csproj", "{44D9347B-D861-4D9D-94C0-BA9657E87F01}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.Client2", "Wolnik.Client2\Wolnik.Client2.csproj", "{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{44D9347B-D861-4D9D-94C0-BA9657E87F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D9347B-D861-4D9D-94C0-BA9657E87F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D9347B-D861-4D9D-94C0-BA9657E87F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

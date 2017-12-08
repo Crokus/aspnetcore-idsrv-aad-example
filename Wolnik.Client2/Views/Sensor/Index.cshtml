@@ -1,0 +1,18 @@
+﻿@model TokensViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <h2>API</h2>
+        <a asp-area="" asp-controller="Sensor" asp-action="FetchData">Fetch data</a>
+    </div>
+</div>
+<div>
+    <h2>ID Token</h2>
+    <p>@Model.IdToken</p>
+    <h2>Access Token</h2>
+    <p>@Model.AccessToken</p>
+</div>

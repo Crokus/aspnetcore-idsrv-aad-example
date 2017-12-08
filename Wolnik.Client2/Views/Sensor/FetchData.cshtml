@@ -1,0 +1,23 @@
+﻿@model List<Wolnik.Model.SensorData>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Sensor Data</h2>
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="pull-left col-md-4">
+            <div>
+                
+                <div class="h4">@item.Name <span class="h5">@item.Type</span></div>
+                <div>
+                    <span class="h3">@item.Value</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
