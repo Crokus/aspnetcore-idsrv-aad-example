@@ -1,6 +1,6 @@
 # aspnetcore-idsrv-aad-example
 
-Example of ASP.NET Core 2 MVC and Web API apps secured by [IdentityServer4](https://github.com/IdentityServer/IdentityServer4) using Azure Active Directory as external auth provider.
+Example of two ASP.NET Core 2 MVC and Web API apps secured by [IdentityServer4](https://github.com/IdentityServer/IdentityServer4) using Azure Active Directory as external auth provider.
 
 ### Configuration
 
