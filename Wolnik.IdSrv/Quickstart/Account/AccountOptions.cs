@@ -4,10 +4,8 @@
 
 using System;
 
-namespace IdentityServer4.Quickstart.UI
-{
-    public class AccountOptions
-    {
+namespace IdentityServer4.Quickstart.UI {
+    public class AccountOptions {
         public static bool AllowLocalLogin = true;
         public static bool AllowRememberLogin = true;
         public static TimeSpan RememberMeLoginDuration = TimeSpan.FromDays(30);

@@ -2,17 +2,13 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Wolnik.Client2.Controllers
-{
-    public class AuthorizationController : Controller
-    {
-        public IActionResult AccessDenied()
-        {
+namespace Wolnik.Client2.Controllers {
+    public class AuthorizationController : Controller {
+        public IActionResult AccessDenied() {
             return View();
         }
 
-        public async Task Logout()
-        {
+        public async Task Logout() {
             await HttpContext.SignOutAsync("Cookies");
             await HttpContext.SignOutAsync("oidc");
         }

@@ -1,54 +1,47 @@
-﻿using IdentityModel.Client;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using IdentityModel.Client;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
-namespace Wolnik.Client.Services
-{
-    public class SensorDataHttpClient : ISensorDataHttpClient
-    {
+namespace Wolnik.Client.Services {
+    public class SensorDataHttpClient : ISensorDataHttpClient {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private HttpClient _httpClient = new HttpClient();
 
-        public SensorDataHttpClient(IHttpContextAccessor httpContextAccessor)
-        {
+        public SensorDataHttpClient(IHttpContextAccessor httpContextAccessor) {
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<HttpClient> GetClientAsync()
-        {
+        public async Task<HttpClient> GetClientAsync() {
             string accessToken = await GetValidAccessToken();
-            if (!string.IsNullOrEmpty(accessToken))
-            {
+            if (!string.IsNullOrEmpty(accessToken)) {
                 _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             }
 
-            _httpClient.BaseAddress = new Uri("https://localhost:44393/");
+            _httpClient.BaseAddress = new Uri("http://localhost:11215/");
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+            new MediaTypeWithQualityHeaderValue("application/json"));
 
             return _httpClient;
         }
 
-        private async Task<string> GetValidAccessToken()
-        {
+        private async Task<string> GetValidAccessToken() {
             var currentContext = _httpContextAccessor.HttpContext;
             var expiresAtToken = await currentContext.GetTokenAsync("expires_at");
             var expiresAt = string.IsNullOrWhiteSpace(expiresAtToken) ? DateTime.MinValue : DateTime.Parse(expiresAtToken).AddSeconds(-60).ToUniversalTime();
             string accessToken = await (expiresAt < DateTime.UtcNow ?
-                RenewTokens() : currentContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken));
+            RenewTokens() : currentContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken));
             return accessToken;
         }
 
-        private async Task<string> RenewTokens()
-        {
+        private async Task<string> RenewTokens() {
             // get the current HttpContext to access the tokens
             var currentContext = _httpContextAccessor.HttpContext;
 
@@ -58,17 +51,16 @@ namespace Wolnik.Client.Services
 
             // create a new token client to get new tokens
             var tokenClient = new TokenClient(metaDataResponse.TokenEndpoint,
-                "sensorclient", "gruntToMiecDlugieHasloLatweDoZapamietania");
+            "sensorclient", "gruntToMiecDlugieHasloLatweDoZapamietania");
 
             // get the saved refresh token
             var currentRefreshToken = await currentContext
-                .GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
+            .GetTokenAsync(OpenIdConnectParameterNames.RefreshToken);
 
             // refresh the tokens
             var tokenResult = await tokenClient.RequestRefreshTokenAsync(currentRefreshToken);
 
-            if (!tokenResult.IsError)
-            {
+            if (!tokenResult.IsError) {
                 // get current tokens
                 var old_id_token = await currentContext.GetTokenAsync("id_token");
                 var new_access_token = tokenResult.AccessToken;
@@ -90,9 +82,7 @@ namespace Wolnik.Client.Services
 
                 // return the new access token 
                 return tokenResult.AccessToken;
-            }
-            else
-            {
+            } else {
                 throw new Exception("Problem encountered while refreshing tokens.",
                     tokenResult.Exception);
             }

@@ -1,40 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Wolnik.Client2.Services;
 
-namespace Wolnik.Client2
-{
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
+namespace Wolnik.Client2 {
+    public class Startup {
+        public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices(IServiceCollection services) {
             services.AddMvc();
 
             services.AddScoped<ISensorDataHttpClient, SensorDataHttpClient>();
 
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = "Cookies";
-                    options.DefaultChallengeScheme = "oidc";
-                })
+            services.AddAuthentication(options => {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
                 .AddCookie("Cookies", options => options.AccessDeniedPath = "/Authorization/AccessDenied")
-                .AddOpenIdConnect("oidc", options =>
-                {
+                .AddOpenIdConnect("oidc", options => {
                     options.Authority = "https://localhost:44392/";
                     options.RequireHttpsMetadata = true;
                     options.ClientId = "sensoradminclient";
@@ -46,23 +36,18 @@ namespace Wolnik.Client2
                     options.SaveTokens = true;
                     options.ClientSecret = "secret2";
                     options.GetClaimsFromUserInfoEndpoint = true;
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
+                    options.TokenValidationParameters = new TokenValidationParameters {
                         NameClaimType = "name"
                     };
                 });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-            }
-            else
-            {
+            } else {
                 app.UseExceptionHandler("/Home/Error");
             }
 
@@ -70,8 +55,7 @@ namespace Wolnik.Client2
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
+            app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Sensor}/{action=Index}/{id?}");

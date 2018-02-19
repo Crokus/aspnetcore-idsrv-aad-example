@@ -11,6 +11,12 @@
     </div>
 </div>
 <div>
+    <h2>Claims</h2>
+    <p>
+        @foreach (var claim in @User.Claims) {
+            <li>@claim.Type = @claim.Value</li>
+	}
+    </p>
     <h2>ID Token</h2>
     <p>@Model.IdToken</p>
     <h2>Access Token</h2>
