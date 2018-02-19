@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.Client", "Wolnik.Client\Wolnik.Client.csproj", "{BFB0C708-4CD0-44A6-9910-28AFB2203579}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.IdSrv", "Wolnik.IdSrv\Wolnik.IdSrv.csproj", "{44D9347B-D861-4D9D-94C0-BA9657E87F01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wolnik.Client2", "Wolnik.Client2\Wolnik.Client2.csproj", "{BFFF3C0B-38D0-4C8F-9E9F-A96A03D8A220}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3FD0E57E-476E-4620-866D-D47F452E1D27}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

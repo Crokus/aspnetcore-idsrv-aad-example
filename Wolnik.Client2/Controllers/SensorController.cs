@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -74,9 +73,9 @@ namespace Wolnik.Client2.Controllers
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK:
-                {
-                    return await onSuccess();
-                }
+                    {
+                        return await onSuccess();
+                    }
                 case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.Forbidden:
                     return RedirectToAction("AccessDenied", "Authorization");

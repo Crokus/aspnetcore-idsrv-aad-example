@@ -1,5 +1,3 @@
-using System;
-
 namespace Wolnik.Client.Models
 {
     public class ErrorViewModel
