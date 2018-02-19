@@ -7,10 +7,8 @@ using System.Security.Claims;
 using IdentityModel;
 using IdentityServer4.Test;
 
-namespace IdentityServer4.Quickstart.UI
-{
-    public class TestUsers
-    {
+namespace IdentityServer4.Quickstart.UI {
+    public class TestUsers {
         public static List<TestUser> Users = new List<TestUser>
         {
             new TestUser{SubjectId = "818727", Username = "alice", Password = "alice",

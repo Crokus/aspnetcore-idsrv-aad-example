@@ -3,15 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Wolnik.Model;
 
-namespace Wolnik.API.Controllers
-{
+namespace Wolnik.API.Controllers {
     [Authorize]
     [Route("api/[controller]")]
-    public class SensorsController : Controller
-    {
+    public class SensorsController : Controller {
         [HttpGet]
-        public IEnumerable<SensorData> Get()
-        {
+        public IEnumerable<SensorData> Get() {
             return new List<SensorData>
             {
                 new SensorData {SensorId = "1", Name = "L1", Type = "temperature", Value = "23.1"},

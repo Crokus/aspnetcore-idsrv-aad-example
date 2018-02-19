@@ -19,13 +19,13 @@ indent_size = 2
 # C# files
 [*.cs]
 # New line preferences
-csharp_new_line_before_open_brace                                        = all
-csharp_new_line_before_else                                              = true
-csharp_new_line_before_catch                                             = true
-csharp_new_line_before_finally                                           = true
-csharp_new_line_before_members_in_object_initializers                    = true
-csharp_new_line_before_members_in_anonymous_types                        = true
-csharp_new_line_within_query_expression_clauses                          = true
+csharp_new_line_before_open_brace                                        = none
+csharp_new_line_before_else                                              = false
+csharp_new_line_before_catch                                             = false
+csharp_new_line_before_finally                                           = false
+csharp_new_line_before_members_in_object_initializers                    = false
+csharp_new_line_before_members_in_anonymous_types                        = false
+csharp_new_line_within_query_expression_clauses                          = false
 
 # Indentation preferences
 csharp_indent_block_contents                                             = true
@@ -159,8 +159,4 @@ indent_size = 2
 [*.sh]
 end_of_line = lf
 [*.{cmd, bat, cs}]
-end_of_line = crlf
-
-# Feature files
-[*.{feature, tt]]
 end_of_line = crlf

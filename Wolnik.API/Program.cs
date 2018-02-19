@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Wolnik.API
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
+namespace Wolnik.API {
+    public class Program {
+        public static void Main(string[] args) {
             BuildWebHost(args).Run();
         }
 

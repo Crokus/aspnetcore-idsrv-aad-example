@@ -4,12 +4,9 @@ using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
-namespace Wolnik.IdSrv
-{
-    public static class Config
-    {
-        public static List<TestUser> GetUsers()
-        {
+namespace Wolnik.IdSrv {
+    public static class Config {
+        public static List<TestUser> GetUsers() {
             return new List<TestUser>
         {
         new TestUser
@@ -39,8 +36,7 @@ namespace Wolnik.IdSrv
         };
         }
 
-        public static IEnumerable<IdentityResource> GetIdentityResources()
-        {
+        public static IEnumerable<IdentityResource> GetIdentityResources() {
             return new List<IdentityResource>
         {
         new IdentityResources.OpenId(),
@@ -49,13 +45,11 @@ namespace Wolnik.IdSrv
         };
         }
 
-        public static IEnumerable<ApiResource> GetApiResources()
-        {
+        public static IEnumerable<ApiResource> GetApiResources() {
             return new List<ApiResource> { new ApiResource("sensorsapi", "Sensors API"), new ApiResource("adminapi", "Admin API") };
         }
 
-        public static IEnumerable<Client> GetClients()
-        {
+        public static IEnumerable<Client> GetClients() {
             return new List<Client>
         {
         new Client

@@ -4,10 +4,8 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityServer4.Quickstart.UI
-{
-    public class LoginInputModel
-    {
+namespace IdentityServer4.Quickstart.UI {
+    public class LoginInputModel {
         [Required]
         public string Username { get; set; }
         [Required]
